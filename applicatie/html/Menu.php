@@ -108,7 +108,7 @@ session_start();
                 <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a>
             </div>
             <div class="menu-item">
-                <img src="applicatie/afbeeldingen/water.png" alt="Water">
+                <img src="afbeeldingen/water.png" alt="Water">
                 <h3>Water</h3>
                 <p>Fles water Bona Aqua</p>
                 <p>Prijs: 1,09€</p>
