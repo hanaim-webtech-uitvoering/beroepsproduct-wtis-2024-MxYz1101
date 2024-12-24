@@ -30,11 +30,11 @@
             <h1>Pizzeria Sole Machina</h1>
             <nav>
                 <ul>
-                    <li><a href="Menu.html">Menu</a></li>
-                    <li><a href="Winkelmandje.html">Winkelmandje</a></li>
-                    <li><a href="Profiel.html">Profiel</a></li>
-                    <li><a href="Login.html">Login</a></li>
-                    <li><a href="Registratie.html">Registratie</a></li>
+                    <li><a href="Menu.php">Menu</a></li>
+                    <li><a href="Winkelmandje.php">Winkelmandje</a></li>
+                    <li><a href="Profiel.php">Profiel</a></li>
+                    <li><a href="Login.php">Login</a></li>
+                    <li><a href="Registratie.php">Registratie</a></li>
                 </ul> 
             </nav>
         </div>
@@ -74,7 +74,7 @@
         </table>
 
         <div class="bestelling-annuleren">
-            <button><a href="Menu.html">Anuleer bestelling</a></button>
+            <button><a href="Menu.php">Anuleer bestelling</a></button>
         </div>
 
         <h2> Bestelling wordt bezorgt naar adres:</h2>
@@ -92,7 +92,7 @@
         </div>
     </main>
     <footer>
-            <a href="Privacyverklaring.html"> link naar privacy verklaring.</a>
+            <a href="Privacyverklaring.php"> link naar privacy verklaring.</a>
     </footer>
 </body>
 </html>

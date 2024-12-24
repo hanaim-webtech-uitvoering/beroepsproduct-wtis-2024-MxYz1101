@@ -23,11 +23,11 @@ session_start();
             <h1>Pizzeria Sole Machina</h1>
             <nav>
                 <ul>
-                    <li><a href="Menu.html">Menu</a></li>
-                    <li><a href="Winkelmandje.html">Winkelmandje</a></li>
-                    <li><a href="Profiel.html">Profiel</a></li>
-                    <li><a href="Login.html">Login</a></li>
-                    <li><a href="Registratie.html">Registratie</a></li>
+                    <li><a href="Menu.php">Menu</a></li>
+                    <li><a href="Winkelmandje.php">Winkelmandje</a></li>
+                    <li><a href="Profiel.php">Profiel</a></li>
+                    <li><a href="Login.php">Login</a></li>
+                    <li><a href="Registratie.php">Registratie</a></li>
                 </ul> 
             </nav>
         </div>
@@ -41,7 +41,7 @@ session_start();
                 <p>Napolitaanse pizza met tomaten, mozzarella en verse basilicum </p>
                 <p>Prijs: 10,99€</p>
                 <p>Hoeveelheid: </p>
-                <a href="Winkelmandje.html">Toevoegen aan winkelmandje</a>
+                <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a>
             </div>
             <div class="menu-item">
                 <img src="afbeeldingen/4kazen.png" alt="Vier kazen pizza">
@@ -49,7 +49,7 @@ session_start();
                 <p>Pizza met kazen: mozzarella, gorgonzola, blauwe schimmelkaas, parmigiano </p>
                 <p>Prijs: 11,99€</p>
                 <p>Hoeveelheid: </p>
-                <a href="Winkelmandje.html">Toevoegen aan winkelmandje</a></button>
+                <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a></button>
             </div>
             <div class="menu-item">
                 <img src="afbeeldingen/pepperoni.png" alt="Pepperoni pizza">
@@ -57,7 +57,7 @@ session_start();
                 <p>Pizza met kaas, tomatensaus en salami van rundvlees</p>
                 <p>Prijs: 13,99€ </p>
                 <p>Hoeveelheid: </p>
-                <a href="Winkelmandje.html">Toevoegen aan winkelmandje</a>
+                <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a>
             </div>
             <div class="menu-item">
                 <img src="afbeeldingen/ham.png" alt="Ham pizza">
@@ -65,7 +65,7 @@ session_start();
                 <p>Pizza met kaas, tomatensaus en ham</p>
                 <p>Prijs: 13,99€</p>
                 <p>Hoeveelheid: </p>
-                <a href="Winkelmandje.html">Toevoegen aan winkelmandje</a>
+                <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a>
             </div>
             <div class="menu-item">
                 <img src="afbeeldingen/paddenstoelen.png" alt="Paddenstoelen pizza">
@@ -73,7 +73,7 @@ session_start();
                 <p>Pizza met kaas, tomatensaus, ui, paddenstoelen</p>
                 <p>Prijs: 14,99€</p>
                 <p>Hoeveelheid: </p>
-                <a href="Winkelmandje.html">Toevoegen aan winkelmandje</a>
+                <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a>
             </div>
             <div class="menu-item">
                 <img src="afbeeldingen/hawaii.png" alt="Hawaii pizza">
@@ -81,7 +81,7 @@ session_start();
                 <p>Pizza met kaas, tomatensaus, kip, ananas </p>
                 <p>Prijs: 13,99€</p>
                 <p>hoeveelheid: </p>
-                <a href="Winkelmandje.html">Toevoegen aan winkelmandje</a>
+                <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a>
             </div>
             <div class="menu-item">
                 <img src="afbeeldingen/hetepeper.png" alt="Hete peper pizza">
@@ -89,7 +89,7 @@ session_start();
                 <p>Pizza met kaas, tomatensaus, salami van rundvlees, hete groene peper</p>
                 <p>Prijs: 10,99€</p>
                 <p>Hoeveelheid: </p>
-                <a href="Winkelmandje.html">Toevoegen aan winkelmandje</a>
+                <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a>
             </div>
             <div class="menu-item">
                 <img src="afbeeldingen/burger.png" alt="Burger pizza">
@@ -97,7 +97,7 @@ session_start();
                 <p>Pizza met kaas, tomatensaus, ui, augurken, salami van rundvlees</p>
                 <p>Prijs: 14,99€</p>
                 <p>Hoeveelheid: </p>
-                <a href="Winkelmandje.html">Toevoegen aan winkelmandje</a>
+                <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a>
             </div>
             <div class="menu-item">
                 <img src="afbeeldingen/frisdrank.png" alt="Frisdrank">
@@ -105,15 +105,15 @@ session_start();
                 <p>Frisdrank naar keuze</p>
                 <p>Prijs: 1,49€</p>
                 <p>Hoeveelheid: </p>
-                <a href="Winkelmandje.html">Toevoegen aan winkelmandje</a>
+                <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a>
             </div>
             <div class="menu-item">
-                <img src="afbeeldingen/water.png" alt="Water">
+                <img src="applicatie/afbeeldingen/water.png" alt="Water">
                 <h3>Water</h3>
                 <p>Fles water Bona Aqua</p>
                 <p>Prijs: 1,09€</p>
                 <p>Hoeveelheid: </p>
-                <a href="Winkelmandje.html">Toevoegen aan winkelmandje</a>
+                <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a>
             </div>
             <div class="menu-item">
                 <img src="afbeeldingen/thee.png" alt="Thee">
@@ -121,11 +121,11 @@ session_start();
                 <p>Thee naar keuze</p>
                 <p>Prijs: 1,49€</p>
                 <p>Hoeveelheid: </p>
-                <a href="Winkelmandje.html">Toevoegen aan winkelmandje</a>
+                <a href="Winkelmandje.php">Toevoegen aan winkelmandje</a>
             </div>
         </div>
     </main>
     <footer>
-            <a href="Privacyverklaring.html"> link naar privacy verklaring.</a>
+            <a href="Privacyverklaring.php"> link naar privacy verklaring.</a>
     </footer>
 </body>
