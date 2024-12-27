@@ -1,5 +1,5 @@
 <?php
-require_once 'db_connection.php';
+require_once 'functies/db_connection.php';
 
 $db = makeDbconnection();
 
