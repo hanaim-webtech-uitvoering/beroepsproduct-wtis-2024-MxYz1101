@@ -318,18 +318,18 @@ table th>button {
 }
 
 
-button.bestelling-bevestiging{
-    align-items: left;
-    text-align: left;
-}
-
-button.bestelling-bevestiging{
+.bestelling-bevestiging>button{
     background-color: rgb(126, 250, 126);
+    border-radius: 5px;
     color:#000000;
     margin-left: 30px;
+    align-items: left;
+    text-align: left;
+    font-size: 16px;
+    font-weight: 600;
 }
 
-button.bestelling-bevestiging:hover {
+.bestelling-bevestiging>button:hover {
     background-color: rgb(192, 238, 192);
     color:#000000;
 }
@@ -339,9 +339,23 @@ button.bestelling-bevestiging:hover {
     text-align: left;
     margin-left: 30px;
 }
-.bestelling-annuleren>button>a{
+
+.bestelling-annuleren>a{
+    display: block;
+    background-color: #6d1414;
+    border: none;
+    border-radius: 5px;
+    width: 125px;
+    font-family: 'Times New Roman', Times, serif;
     text-decoration: none;
     color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 2%;
+    }
+
+.bestelling-annuleren>a:hover{
+    background-color: #CB202D;
 }
 
 /***********************************************************/
