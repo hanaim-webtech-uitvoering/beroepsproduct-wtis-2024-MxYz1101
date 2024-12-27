@@ -60,7 +60,7 @@
         </table>
 
         <div class="bestelling-annuleren">
-            <button><a href="Menu.php">Anuleer bestelling</a></button>
+            <a href="Menu.php">Anuleer bestelling</a>
         </div>
 
         <h2> Bestelling wordt bezorgt naar adres:</h2>

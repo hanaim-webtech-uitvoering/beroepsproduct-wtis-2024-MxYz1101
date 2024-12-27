@@ -208,20 +208,22 @@ button:hover {
     width: 80%;
     border-radius: 15px 15px 5px 15px;
 }
-.menu-item>button{
+.menu-item>a{
     background-color: #6d1414;
     border: none;
+    border-radius: 5px;
+    width: 180px;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
     color: #ffffff;
     font-size: 16px;
     font-weight: 600;
-    border-radius: 5px;
-    width: 180px;
+    padding: 3%;
     }
-.menu-item>button>a{
-    text-decoration: none;
-    color:#ffffff
-}
 
+.menu-item>a:hover{
+    background-color: #CB202D;
+}
 
 /***********************************************************/
 /*            REGISTRATIE                                  */
@@ -264,18 +266,28 @@ button:hover {
     background:#ffffff;
     
 }
-.registratie-form>form button{
-    background: #6d1414;
-    color:#ffffff;
-    width:60%;
-    padding:10px 0;
-    border:solid 1px #000000;
-    margin:5px 0px;
+
+.registratie-form>form>a{
+    display: block;
+    background-color: #6d1414;
+    border: none;
+    border-radius: 5px;
+    width: 180px;
+    font-family: 'Times New Roman', Times, serif;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 3%;
+    margin: 10px auto;
     text-align: center;
-    font-weight:bold;
-    border-radius:4px;
-    text-transform:uppercase ;
+    }
+
+.registratie-form>form>a:hover{
+    background-color: #CB202D;
 }
+
+
 
 /***********************************************************/
 /*            PROFIEL                                      */
