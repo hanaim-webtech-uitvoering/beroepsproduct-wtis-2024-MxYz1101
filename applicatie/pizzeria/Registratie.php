@@ -1,9 +1,3 @@
-<!--
-Registratie en login voor medewerker EN klant
-KLANT: Kan zijn bestelling status zien (onderweg, in de oven ect.), ADRES REGISTREREN
-PERSONEEL: Om bestellingen van klant te beheren, volgende ->detailpagina.
--->
-
 <?php
 require_once 'db_connection.php';
 
