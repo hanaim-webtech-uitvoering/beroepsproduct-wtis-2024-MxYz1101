@@ -4,6 +4,21 @@ KLANT: Kan zijn bestelling status zien (onderweg, in de oven ect.), ADRES REGIST
 PERSONEEL: Om bestellingen van klant te beheren, volgende ->detailpagina.
 -->
 
+<?php
+require_once 'db_connection.php';
+
+$db = makeDbconnection();
+
+$first_name ="";
+$last_name ="";
+$username ="";
+$password ="";
+$role ="";
+$address ="";
+$message =""; //error meldingen of andere meldingen
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,13 +48,14 @@ PERSONEEL: Om bestellingen van klant te beheren, volgende ->detailpagina.
     <main>
     <div class="registratie-form">
         <form method="post" action="Profiel.php">
-        <input name="name" type="text" placeholder="voornaam" required/>
-        <input name="name" type="text" placeholder="achternaam" required/>
-        <input name="email" type="email" placeholder="gebruiksnaam" required />
-        <input name="password" type="password" placeholder="wachtwoord" required/>
-        <input name="password" type="password" placeholder="wachtwoord bevestiging" required/>
-        <input name="rol" type="text" placeholder="rol (klant/medewerker)" required/>
-        <input name="adres" type="text" placeholder="adres"/>
+        <input name="name" type="text" placeholder="voornaam" value="<?= $first_name ?>" required/>
+        <input name="name" type="text" placeholder="achternaam" value="<?= $last_name ?>" required/>
+        <input name="email" type="email" placeholder="gebruiksnaam" value="<?= $username ?>" required />
+        <input name="password" type="password" placeholder="wachtwoord" value="<?= $password ?>" required/>
+    <!--    TWEEDE WW MOET OVEREENKOMEN MET DE EERSTE   -->
+        <input name="password" type="password" placeholder="wachtwoord bevestiging" value="<?= $password ?>" required/>
+        <input name="rol" type="text" placeholder="rol (klant/medewerker)" value="<?= $role ?>" required/>
+        <input name="adres" type="text" placeholder="adres" value="<?= $address ?>" />
         <a href="Profiel.php">register</a>
         </form>
         </div>
