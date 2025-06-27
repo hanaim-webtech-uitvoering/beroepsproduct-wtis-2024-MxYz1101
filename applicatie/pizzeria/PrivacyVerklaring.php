@@ -12,20 +12,8 @@
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <h1>Pizzeria Sole Machina</h1>
-            <nav>
-                <ul>
-                    <li><a href="Menu.php">Menu</a></li>
-                    <li><a href="Winkelmandje.php">Winkelmandje</a></li>
-                    <li><a href="Profiel.php">Profiel</a></li>
-                    <li><a href="Login.php">Login</a></li>
-                    <li><a href="Registratie.php">Registratie</a></li>
-                </ul> 
-            </nav>
-        </div>
-    </header>
+    <?php require 'functies/Header.php'; ?>
+    
     <main>
         <div class="privacy-policy">
             <h1>PRIVACY POLICY</h1>
@@ -172,8 +160,7 @@
         </p>
     </div>
     </main>
-    <footer>
-            <a href="Privacyverklaring.php"> link naar privacy verklaring.</a>
-    </footer>
+
+    <?php require 'functies/Footer.php'; ?>
 </body>
 </html>

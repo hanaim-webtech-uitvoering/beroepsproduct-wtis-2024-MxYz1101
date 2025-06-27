@@ -245,7 +245,7 @@ button:hover {
     margin-left: 18%;
 }
 
-.registratie-form>form input{
+.registratie-form>form input, select{
     padding:10px 0;
     width:75%;
     margin:10px 0;

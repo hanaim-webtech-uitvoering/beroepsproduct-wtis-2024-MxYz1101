@@ -1,4 +1,47 @@
 <!--VOOR KLANT: KAN ZIJN BESTELLINGEN ZIEN: OUDE BESTELLINGEN/LOPENDE BESTELLINGEN-->
+<?php
+require_once 'db_connectie.php';
+require_once 'functies/KlantenFuncties.php';
+
+session_start();
+
+
+if(isset($_SESSION['gebruiker'])){
+  $db = maakVerbinding();
+
+  $client_username = $_SESSION['gebruiker']['gebruikersnaam']; 
+
+  $query = "
+      SELECT 
+            o.order_id, 
+            o.client_username, 
+            o.client_name, 
+            o.datetime, 
+            o.status, 
+            o.address, 
+            p.product_name,
+            p.quantity, 
+            pr.price
+      FROM pizza_order o
+      JOIN pizza_order_product p ON o.order_id = p.order_id
+      JOIN product pr ON p.product_name = pr.name  
+      WHERE o.client_username = :client_username
+      ORDER BY o.datetime DESC;
+  ";
+
+  $stmt = $db->prepare($query);
+  $stmt->execute(['client_username' => $client_username]);
+
+  $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+  $html_table_huidige_bestellingen = geefKlantBestellingOverzicht($data);
+} elseif (!isset($_SESSION['gebruiker'])) {
+    //niet ingelogd -> terug naar login:
+    header('Location: Login.php');
+    exit;
+}
+$gebruikersnaam = $_SESSION['gebruiker']['gebruikersnaam'];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,82 +55,16 @@
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <h1>Pizzeria Sole Machina</h1>
-            <nav>
-                <ul>
-                    <li><a href="Menu.php">Menu</a></li>
-                    <li><a href="Winkelmandje.php">Winkelmandje</a></li>
-                    <li><a href="Profiel.php">Profiel</a></li>
-                    <li><a href="Login.php">Login</a></li>
-                    <li><a href="Registratie.php">Registratie</a></li>
-                </ul> 
-            </nav>
-        </div>
-    </header>
+    <?php require 'functies/Header.php'; ?>
+
     <main>
-    <h2> Eerdere bestellingen:</h2>
-    <table>
-        <tr>
-            <th>Datum: </th>
-            <th>Bestellingnr: </th>
-            <th>Prijs:</th>
-            <th>Status: </th>
-        </tr>
-        <tr>
-            <td> 11/11/2024 </td>
-            <td> 00001</td>
-            <td> 10,99€</td>
-            <td>In Oven</td>
-        </tr>
-        <tr>
-            <td> 01/11/2024 </td>
-            <td> 00004</td>
-            <td> 1,49€</td>
-            <td>Geannuleerd</td>
-        </tr>
-        <tr>
-            <td> 21/10/2024 </td>
-            <td> 00010</td>
-            <td> 12,48€</td>
-            <td>Bezorgd</td>
-        </tr>
-        </table>
-    <h2> Huidige bestelling:</h2>
-    <table>
-        <tr>
-            <th>Datum: </th>
-            <th>Bestellingnr: </th>
-            <th>Producten: </th>
-            <th>Aantal: </th>
-            <th>Prijs:</th>
-        </tr>
-        <tr>
-            <td> </td>
-            <td> 00001</td>
-            <td> Margaritha pizza</td>
-            <td> 1 </td>
-            <td> 10,99€</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td> </td>
-            <td> Cola</td>
-            <td> 2 </td>
-            <td> 1,49€</td>
-        </tr>
-        <tr>
-            <td> 11/11/2024 </td>
-            <td> Totaal</td>
-            <td> </td>
-            <td> 3 </td>
-            <td> 12,48€</td>
-        </tr>
-        </table>
+    <h2>Jouw bestellingen:</h2>
+    <?= $html_table_huidige_bestellingen ?>
+    <form method="post" action="includes/LoguitVerwerking.php">
+        <button type="submit">Log uit</button>
+    </form>
     </main>
-    <footer>
-            <a href="Privacyverklaring.php"> link naar privacy verklaring.</a>
-    </footer>
+
+    <?php require 'functies/Footer.php'; ?>
 </body>
 </html>

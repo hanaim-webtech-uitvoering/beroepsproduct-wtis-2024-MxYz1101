@@ -3,6 +3,46 @@ Registratie en login voor medewerker EN klant
 KLANT: Kan zijn bestelling status zien (onderweg, in de oven ect.), ADRES REGISTREREN
 PERSONEEL: Om bestellingen van klant te beheren, volgende ->detailpagina.
 -->
+<?php
+require_once 'db_connectie.php';
+session_start();
+
+$db = maakVerbinding();
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = $_POST['gebruikersnaam'];
+    $password = $_POST['wachtwoord'];
+    $role     = $_POST['rol'];
+
+    $stmt = $db->prepare("SELECT * FROM [User] WHERE username = :gebruikersnaam AND role = :rol");
+    $stmt->execute([
+        ':gebruikersnaam' => $username,
+        ':rol'     => $role
+    ]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($user && password_verify($password, $user['password'])) {
+        $_SESSION['gebruiker'] = [
+            'gebruikersnaam' => $user['username'],
+            'rol' => $user['role']
+];
+
+        // Redirect op basis van rol
+        if ($role === 'Client') {
+            header("Location: Profiel.php");
+        } elseif ($role === 'Personnel'){
+            header("Location: BestellingOverzicht.php");
+        }
+    } else {
+        // Bij fout: terug naar login met foutmelding
+        $_SESSION['login_error'] = "Ongeldige gebruikersnaam, wachtwoord of rol.";
+        header("Location: Registratie.php");
+    }
+}
+
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,44 +56,23 @@ PERSONEEL: Om bestellingen van klant te beheren, volgende ->detailpagina.
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <h1>Pizzeria Sole Machina</h1>
-            <nav>
-                <ul>
-                    <li><a href="Menu.php">Menu</a></li>
-                    <li><a href="Winkelmandje.php">Winkelmandje</a></li>
-                    <li><a href="Profiel.php">Profiel</a></li>
-                    <li><a href="Login.php">Login</a></li>
-                    <li><a href="Registratie.php">Registratie</a></li>
-                </ul>  
-            </nav>
-        </div>
-    </header>
+    <?php require 'functies/Header.php'; ?>    
     <main>
-    <div class="login-form">    
-    <form method="post" action="Profiel.php">
-        <h3>Login als klant</h3>
-        <label>emailadres</label> 
-        <input type="text" id="email" name="emailadres" required><br>
-        <label>wachtwoord</label>
-        <input type="password" id="wachtwoord" name="wachtwoord" required>
-        <button>Log in als klant</button>
-    </form>
-    </div>
-    <div class="login-form">
-        <form method="post" action="Bestellingoverzicht.php">
-            <h3>Login als medewerker</h3>
-            <label for="gebruiksnaam">gebruiksnaam</label>
-            <input type="text" id="gebruiksnaam" name="gebruiksnaam" required><br>
-            <label for="wachtwoord">wachtwoord</label>
+        <div class="login-form">    
+        <form method="post" action="">
+            <h3>Login</h3>
+            <label>gebruikersnaam</label> 
+            <input type="text" id="gebruikersnaam" name="gebruikersnaam" required><br>
+            <label>wachtwoord</label>
             <input type="password" id="wachtwoord" name="wachtwoord" required>
-            <button>Log in als Medewerker</button>
+            <select name="rol" required>
+                <option value="Client">Klant</option>
+                <option value="Personnel">Medewerker</option>
+            </select>
+            <button>Log in</button>
         </form>
-    </div>
-    </main>
-    <footer>
-            <a href="Privacyverklaring.php"> link naar privacy verklaring.</a>
-    </footer>
+        </div>
+    </main>    
+    <?php require 'functies/Footer.php'; ?>
 </body>
 </html>

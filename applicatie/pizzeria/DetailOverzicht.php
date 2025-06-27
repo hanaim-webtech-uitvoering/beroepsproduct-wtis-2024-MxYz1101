@@ -1,6 +1,39 @@
 <!--
 Details van een bestelling inzien voor bijvoorbeeld een bezorger
 -->
+<?php
+session_start();
+require_once 'db_connectie.php';
+
+if (!isset($_SESSION['gebruiker']) || $_SESSION['gebruiker']['rol'] !== 'Personnel') {
+    header("Location: Login.php");
+}
+
+if (!isset($_GET['order_id'])) {
+    echo "Geen bestelling gespecificeerd.";
+}
+
+$order_id = $_GET['order_id'];
+
+$db = maakVerbinding();
+
+// Haal bestelling op via order_id:
+$stmt = $db->prepare("
+    SELECT 
+        pop.product_name, 
+        pop.quantity, 
+        pr.type_id
+    FROM pizza_order_product pop
+    JOIN product pr ON pop.product_name = pr.name
+    WHERE pop.order_id = :order_id
+");
+$stmt->execute(['order_id' => $order_id]);
+$producten = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+$adresStmt = $db->prepare("SELECT address, status FROM pizza_order WHERE order_id = :order_id");
+$adresStmt->execute(['order_id' => $order_id]);
+$bestellingInfo = $adresStmt->fetch(PDO::FETCH_ASSOC);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,66 +47,38 @@ Details van een bestelling inzien voor bijvoorbeeld een bezorger
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <h1>Pizzeria Sole Machina</h1>
-            <nav>
-                <ul>
-                    <li><a href="Menu.php">Menu</a></li>
-                    <li><a href="Winkelmandje.php">Winkelmandje</a></li>
-                    <li><a href="Profiel.php">Profiel</a></li>
-                    <li><a href="Login.php">Login</a></li>
-                    <li><a href="Registratie.php">Registratie</a></li>
-                </ul> 
-            </nav>
-        </div>
-    </header>
+    <?php require 'functies/Header.php'; ?>
+
     <main>
         <table>
             <tr>
-                <th>Bestellingnr: </th>
-                <th>Productnr:</th>
                 <th>Producten: </th>
                 <th>Type:</th>
                 <th>Aantal: </th>
-                <th>In bestelling:</th>
             </tr>
+            <?php foreach ($producten as $p): ?>
             <tr>
-                <td> 00001</td>
-                <td>na13z</td>
-                <td> Margaritha pizza</td>
-                <td> Eten</td>
-                <td> 1 </td>
-                <td><button>+ </button> 1 <button> - </button></td>
+                <td><?= htmlspecialchars($p['product_name']) ?></td>
+                <td><?= htmlspecialchars($p['type_id']) ?></td>
+                <td><?= (int)$p['quantity'] ?></td>
             </tr>
-            <tr>
-                <td> </td>
-                <td>na12x</td>
-                <td> Cola</td>
-                <td> Drank</td>
-                <td> 2 </td>
-                <td><button>+ </button> 1 <button> - </button></td>
-            </tr>
+            <?php endforeach; ?>
             </table>
     <h2> Bezorgen naar:</h2>
     <table>
         <tr>
-            <th>Bestellingnr: </th>
-            <th>Adres: </th>
-            <th>reistijd:</th>
-            <th>Status: </th>
+            <th>Adres</th>
+            <th>Status</th>
         </tr>
         <tr>
-            <td>00001</td>
-            <td>Arnhem, ruitenberglaan 26</td>
-            <td> 16 min</td>
-            <td><button class="bestelling-bevestiging">Bevestig volledig bestelling</button></td>
+            <td><?= htmlspecialchars($bestellingInfo['address']) ?></td>
+            <td><?= htmlspecialchars($bestellingInfo['status']) ?></td>
         </tr>
     </table>
         <a href="Bestellingoverzicht.php">Terug naar bestellingen overzicht</a>
 </main>
-<footer>
-        <a href="Privacyverklaring.php"> link naar privacy verklaring.</a>
-</footer>
+
+<?php require 'functies/Footer.php'; ?>
+
 </body>
 </html>
